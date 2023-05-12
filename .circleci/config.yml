@@ -8,19 +8,17 @@ jobs:
   build:
     machine:
       image: ubuntu-2204:2023.02.1
-    environment:
-      TAG: ${CIRCLE_TAG}
     steps:
       - checkout
       - run:
           name: Build docker image
-          command: make build
+          command: TAG=${CIRCLE_TAG} make build
       - run:
           name: Log in to hub.docker.com
           command: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
       - run:
           name: Publish docker image
-          command: make push
+          command: TAG=${CIRCLE_TAG} make push
   deploy-application:
     executor: aws-eks/python3
     parameters:
@@ -72,7 +70,7 @@ workflows:
       - deploy-application:
           cluster-name: bitbites
           aws-region: us-east-1
-          docker-image-name: "${REPO}/bites-auth-api:${TAG}"
+          docker-image-name: "${REPO}/bites-auth-api:${CIRCLE_TAG}"
           filters:
             tags:
               only: /^v.*/
