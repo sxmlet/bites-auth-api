@@ -1,8 +1,6 @@
 services:
   bites-auth-api:
-    image: ${REPO}/bites-auth-api
-    build:
-      context: .
+    image: ${REPO}/bites-auth-api:${TAG}
     env_file:
       - .env
     networks:

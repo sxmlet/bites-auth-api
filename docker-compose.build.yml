@@ -1,0 +1,5 @@
+services:
+  bites-auth-api:
+    image: ${REPO}/bites-auth-api:${TAG}
+    build:
+      context: .
