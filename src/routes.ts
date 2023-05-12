@@ -8,11 +8,6 @@ const logger = createLogger('auth-proxy');
 const router = Router();
 
 async function genericHandler(req: Request, resp: Response) {
-  logger.info(`incoming request - method: ${req.method}, path: ${req.path}`)
-  if (req.method.toLowerCase() === 'options') {
-    return resp.send();
-  }
-
   const conf: AxiosRequestConfig = {
     headers: {
       Authorization: req.headers.authorization,

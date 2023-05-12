@@ -1,4 +1,4 @@
-import express, {Express, json} from 'express';
+import express, {Express, json, Request, Response} from 'express';
 import cors from 'cors';
 import {authHandler} from './auth.js';
 import {ProxiesRoutes} from './routes.js';
@@ -7,7 +7,6 @@ import {config} from "./config.js";
 const app: Express = express();
 
 app.use(cors({
-  allowedHeaders: '*',
   methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
   preflightContinue: true,
   origin: '*',

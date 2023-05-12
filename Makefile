@@ -1,5 +1,7 @@
 .PHONY: build publish-images
 
+SERVICE=bites-auth-api
+
 run: build
 	@docker-compose up -d
 
@@ -10,4 +12,6 @@ build:
 publish-images:
 	@${TAG:? Tag required}
 	@${REPO:? Repository must be specified}
-	@docker push ${REPO}/bites-auth-api:${TAG}
+	@docker tag ${REPO}/${SERVICE}:${TAG} ${REPO}/${SERVICE}:latest
+	@docker push ${REPO}/${SERVICE}:${TAG}
+	@docker push ${REPO}/${SERVICE}:latest

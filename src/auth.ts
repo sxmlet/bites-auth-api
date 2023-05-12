@@ -11,6 +11,11 @@ const logger = createLogger('auth')
 const jwksUrl = config.jwksUrl;
 
 export const authHandler = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+  logger.info(`incoming request - method: ${req.method}, path: ${req.path}`)
+  if (req.method.toLowerCase() === 'options') {
+    return res.send();
+  }
+
   logger.info('Authorizing a user')
   try {
     const jwtToken = await verifyToken(req.headers.authorization as string)
