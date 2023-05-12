@@ -9,7 +9,7 @@ build:
 	@${TAG:? Tag required}
 	@docker-compose -f docker-compose.build.yml build
 
-publish-images:
+push:
 	@${TAG:? Tag required}
 	@${REPO:? Repository must be specified}
 	@docker tag ${REPO}/${SERVICE}:${TAG} ${REPO}/${SERVICE}:latest

@@ -10,6 +10,15 @@ import {config} from './config.js';
 const logger = createLogger('auth')
 const jwksUrl = config.jwksUrl;
 
+/**
+ * Generic handler for authentication.
+ *
+ * Executes before all other handlers and checks if the user is authorized.
+ *
+ * @param req Incoming request.
+ * @param res Response object.
+ * @param next Function to execute the next handler.
+ */
 export const authHandler = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   logger.info(`incoming request - method: ${req.method}, path: ${req.path}`)
   if (req.method.toLowerCase() === 'options') {

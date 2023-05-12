@@ -25,6 +25,7 @@ async function genericHandler(req: Request, resp: Response) {
     return resp.send(res.data);
   } catch (e) {
     let err = e as unknown as AxiosError;
+    logger.error('error during proxy: ' + toJsonString(err))
     let status = 500;
     if (err.response) {
       status = err.response.status;

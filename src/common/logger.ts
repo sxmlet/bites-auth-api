@@ -10,7 +10,7 @@ export function createLogger(loggerName: string, level: string = 'info') {
   return winston.createLogger({
     level: level,
     format: winston.format.json(),
-    defaultMeta: { name: loggerName },
+    defaultMeta: { name: loggerName, app: 'bites-auth-api'},
     transports: [
       new winston.transports.Console()
     ]

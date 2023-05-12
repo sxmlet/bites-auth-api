@@ -18,4 +18,5 @@ app.use('/api/v0', ProxiesRoutes)
 
 app.listen(config.appPort, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${config.appPort}`);
+  console.log(`Configured bitBites bites API URL: ${config.bitesApi}`);
 });
