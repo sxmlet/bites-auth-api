@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bite-auth-api
+  labels:
+    app: bite-auth-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: bite-auth-api
+      labels:
+        app: bite-auth-api
+    spec:
+      containers:
+        - name: bite-auth-api
+          image: DOCKER_IMAGE
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 1000m
+            requests:
+              cpu: 500m
+          ports:
+            - containerPort: 8080
+          env:
+            - name: JWKS_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: JWKS_URL
+                  name: bitbites
+            - name: BITES_API
+              valueFrom:
+                configMapKeyRef:
+                  key: BITES_API
+                  name: bitbites
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: bite-auth-api
