@@ -10,7 +10,7 @@ type AuthConfig = {
 }
 
 export const config: AuthConfig = {
-  appPort: process.env.PORT ?? '3001',
+  appPort: process.env.PORT ?? '8080',
   jwksUrl: process.env.JWKS_URL ?? '',
   bitesApi: process.env.BITES_API ?? '',
 }
