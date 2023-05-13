@@ -24,6 +24,8 @@ spec:
           ports:
             - containerPort: 8080
           env:
+            - name: VERSION
+              value: {VERSION}
             - name: JWKS_URL
               valueFrom:
                 configMapKeyRef:

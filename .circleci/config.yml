@@ -45,7 +45,7 @@ jobs:
             # demo project more portable.
             BUILD_DATE=$(date '+%Y%m%d%H%M%S')
             cat deployment/bites-auth-api.deployment.yaml.template |\
-               sed "s|DOCKER_IMAGE|<< parameters.docker-image-name >>|g" \
+               sed "s|DOCKER_IMAGE|<< parameters.docker-image-name >>|g;s|{VERSION}|${CIRCLE_TAG}|g" \
             > deployment/bites-auth-api.deployment.yaml
       - run:
           name: Download aws-iam-authenticator
